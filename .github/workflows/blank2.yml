@@ -1,2 +1,19 @@
-!curl -s -L -o run.py 'https://gitlab.com/chamod12/GCRD-Linux-Colab/-/raw/main/run.py'
-!python run.py
+name: Run Python Script
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  run-script:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Download run.py
+        run: curl -s -L -o run.py 'https://gitlab.com/chamod12/GCRD-Linux-Colab/-/raw/main/run.py'
+
+      - name: Run Python script
+        run: python3 run.py
+
